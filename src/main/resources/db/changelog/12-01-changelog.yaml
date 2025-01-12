@@ -15,9 +15,6 @@ databaseChangeLog:
                   name: id
                   type: BIGINT
               - column:
-                  name: name
-                  type: VARCHAR(255)
-              - column:
                   name: username
                   type: VARCHAR(255)
               - column:

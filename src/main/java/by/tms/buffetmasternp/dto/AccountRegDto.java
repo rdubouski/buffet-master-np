@@ -9,7 +9,11 @@ public class AccountRegDto {
 
     @NotNull
     @NotBlank
-    private String name;
+    private String firstName;
+
+    @NotNull
+    @NotBlank
+    private String lastName;
 
     @NotNull
     @NotBlank

@@ -2,8 +2,10 @@ package by.tms.buffetmasternp.service;
 
 import by.tms.buffetmasternp.dto.AccountRegDto;
 import by.tms.buffetmasternp.entity.Account;
+import by.tms.buffetmasternp.entity.Profile;
 import by.tms.buffetmasternp.enums.Role;
 import by.tms.buffetmasternp.repository.AccountRepository;
+import by.tms.buffetmasternp.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,14 +23,20 @@ public class AccountService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ProfileRepository profileRepository;
 
     public void create(AccountRegDto accountRegDto) {
         Account account = new Account();
-        account.setName(accountRegDto.getName());
         account.setUsername(accountRegDto.getUsername());
         account.setPassword(passwordEncoder.encode(accountRegDto.getPassword()));
         account.getAuthorities().add(Role.ROLE_USER);
         accountRepository.save(account);
+        Profile profile = new Profile();
+        profile.setAccount(account);
+        profile.setFirstName(accountRegDto.getFirstName());
+        profile.setLastName(accountRegDto.getLastName());
+        profileRepository.save(profile);
     }
 
     @Override
