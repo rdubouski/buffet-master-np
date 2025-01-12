@@ -1,0 +1,419 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1736690125400-1
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_account
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+            tableName: account
+  - changeSet:
+      id: 1736690125400-2
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_box
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: id_group
+                  type: BIGINT
+              - column:
+                  name: id_account
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: image
+                  type: VARCHAR(255)
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+            tableName: box
+  - changeSet:
+      id: 1736690125400-3
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_box_item
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: id_box
+                  type: BIGINT
+              - column:
+                  name: id_product
+                  type: BIGINT
+              - column:
+                  name: quantity
+                  type: INT
+            tableName: box_item
+  - changeSet:
+      id: 1736690125400-4
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_close_date
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: date
+                  type: DATETIME
+            tableName: close_date
+  - changeSet:
+      id: 1736690125400-5
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_group
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+            tableName: group
+  - changeSet:
+      id: 1736690125400-6
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_ingredient
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+            tableName: ingredient
+  - changeSet:
+      id: 1736690125400-7
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_order
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: id_account
+                  type: BIGINT
+              - column:
+                  name: date
+                  type: DATETIME
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+              - column:
+                  name: price
+                  type: DOUBLE
+            tableName: order
+  - changeSet:
+      id: 1736690125400-8
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_order_item
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: id_order
+                  type: BIGINT
+              - column:
+                  name: id_box
+                  type: BIGINT
+              - column:
+                  name: quantity
+                  type: INT
+            tableName: order_item
+  - changeSet:
+      id: 1736690125400-9
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_product
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: price
+                  type: DOUBLE
+              - column:
+                  name: image
+                  type: VARCHAR(255)
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: min
+                  type: INT
+            tableName: product
+  - changeSet:
+      id: 1736690125400-10
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: product_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ingredient_id
+                  type: BIGINT
+            tableName: product_ingredient
+  - changeSet:
+      id: 1736690125400-11
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_profile
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: id_account
+                  type: BIGINT
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+            tableName: profile
+  - changeSet:
+      id: 1736690125400-12
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: id_account
+            constraintName: uc_profile_id_account
+            tableName: profile
+  - changeSet:
+      id: 1736690125400-13
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_box
+            baseTableName: box_item
+            constraintName: FK_BOX_ITEM_ON_ID_BOX
+            referencedColumnNames: id
+            referencedTableName: box
+  - changeSet:
+      id: 1736690125400-14
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_product
+            baseTableName: box_item
+            constraintName: FK_BOX_ITEM_ON_ID_PRODUCT
+            referencedColumnNames: id
+            referencedTableName: product
+  - changeSet:
+      id: 1736690125400-15
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_account
+            baseTableName: box
+            constraintName: FK_BOX_ON_ID_ACCOUNT
+            referencedColumnNames: id
+            referencedTableName: account
+  - changeSet:
+      id: 1736690125400-16
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_group
+            baseTableName: box
+            constraintName: FK_BOX_ON_ID_GROUP
+            referencedColumnNames: id
+            referencedTableName: group
+  - changeSet:
+      id: 1736690125400-17
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_box
+            baseTableName: order_item
+            constraintName: FK_ORDER_ITEM_ON_ID_BOX
+            referencedColumnNames: id
+            referencedTableName: box
+  - changeSet:
+      id: 1736690125400-18
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_order
+            baseTableName: order_item
+            constraintName: FK_ORDER_ITEM_ON_ID_ORDER
+            referencedColumnNames: id
+            referencedTableName: order
+  - changeSet:
+      id: 1736690125400-19
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_account
+            baseTableName: order
+            constraintName: FK_ORDER_ON_ID_ACCOUNT
+            referencedColumnNames: id
+            referencedTableName: account
+  - changeSet:
+      id: 1736690125400-20
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_account
+            baseTableName: profile
+            constraintName: FK_PROFILE_ON_ID_ACCOUNT
+            referencedColumnNames: id
+            referencedTableName: account
+  - changeSet:
+      id: 1736690125400-21
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: ingredient_id
+            baseTableName: product_ingredient
+            constraintName: fk_proing_on_ingredient
+            referencedColumnNames: id
+            referencedTableName: ingredient
+  - changeSet:
+      id: 1736690125400-22
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: product_id
+            baseTableName: product_ingredient
+            constraintName: fk_proing_on_product
+            referencedColumnNames: id
+            referencedTableName: product
+  - changeSet:
+      id: 1736690072968-23
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: authorities
+                  type: SMALLINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: account_id
+                  type: BIGINT
+            tableName: account_authorities
