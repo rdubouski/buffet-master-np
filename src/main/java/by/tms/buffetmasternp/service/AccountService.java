@@ -6,6 +6,7 @@ import by.tms.buffetmasternp.entity.Profile;
 import by.tms.buffetmasternp.enums.Role;
 import by.tms.buffetmasternp.repository.AccountRepository;
 import by.tms.buffetmasternp.repository.ProfileRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +27,7 @@ public class AccountService implements UserDetailsService {
     @Autowired
     private ProfileRepository profileRepository;
 
+    @Transactional
     public void create(AccountRegDto accountRegDto) {
         Account account = new Account();
         account.setUsername(accountRegDto.getUsername());

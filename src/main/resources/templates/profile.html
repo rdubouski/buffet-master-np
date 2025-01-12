@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}"></header>
+<div class="container text-center col-3" style="margin-top: 70px; margin-bottom: 50px">
+    <h3>Персональные данные:</h3>
+    <ul class="list-group">
+        <li class="list-group-item" th:text="'Фамилия: '+${profileDto.lastName}"></li>
+        <li class="list-group-item" th:text="'Имя: '+${profileDto.firstName}"></li>
+        <li class="list-group-item" th:text="'Телефон: '+${profileDto.phone}"></li>
+        <li class="list-group-item" th:text="'Адрес: '+${profileDto.address}"></li>
+    </ul>
+</div>
+<div class="container text-center col-3">
+    <div class="accordion text-center" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Изменить данные
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form th:action="@{/profile}" th:object="${profileDto}" method="post">
+                        <div class="mb-3">
+                            <label for="exampleInputSurname" class="form-label">Фамилия</label>
+                            <input type="text" th:field="*{lastName}" class="form-control" id="exampleInputSurname" th:value="*{lastName}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputName" class="form-label">Имя</label>
+                            <input type="text" th:field="*{firstName}" class="form-control" id="exampleInputName" th:value="*{firstName}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputNumber" class="form-label">Телефон</label>
+                            <input type="text" th:field="*{phone}" class="form-control" id="exampleInputNumber" th:value="*{phone}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputAddress" class="form-label">Адрес доставки</label>
+                            <input type="text" th:field="*{address}" class="form-control" id="exampleInputAddress" th:value="*{address}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Изменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+<th:block th:insert="~{blocks/bootstrap :: bootstrapscript}"></th:block>
+</html>
