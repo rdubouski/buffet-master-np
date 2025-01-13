@@ -22,7 +22,7 @@ public class ProfileController {
     public String profile(Model model, Authentication authentication) {
         ProfileDto profileDto = profileService.getProfile(authentication);
         model.addAttribute("profileDto", profileDto);
-        return "profile";
+        return "profile/profile";
     }
 
     @PostMapping
