@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ингредиенты</title>
+    <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}"></header>
+<div class="container text-center col-3" style="margin-top: 70px; margin-bottom: 50px">
+    <h3>Ингредиент:</h3>
+    <ul class="list-group">
+        <li class="list-group-item" th:text="'Название: '+${ingredient.name}"></li>
+    </ul>
+    <form th:action="@{/admin/ingredient/edit}" th:object="${newIngredient}" method="post">
+        <div class="mb-3">
+            <input type="hidden" name="id" th:value="${ingredient.id}">
+            <label for="exampleInputName" class="form-label">Новое название ингредиента</label>
+            <input type="text" name="name" class="form-control" id="exampleInputName">
+        </div>
+        <button type="submit" class="btn btn-primary">Изменить</button>
+    </form>
+
+</div>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+<th:block th:insert="~{blocks/bootstrap :: bootstrapscript}"></th:block>
+</html>
