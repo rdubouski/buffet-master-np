@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1736772750608-1
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: comment
+                  type: VARCHAR(255)
+            tableName: order
+

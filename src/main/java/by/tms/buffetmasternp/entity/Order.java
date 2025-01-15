@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Order {
     private Account account;
 
     @Column(name = "date")
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "address")
     private String address;
@@ -35,6 +36,9 @@ public class Order {
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "comment")
+    private String comment;
 
     @Column(name = "status")
     private StatusOrder status;

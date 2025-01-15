@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1736801287067-1
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: date
+            tableName: close_date
+  - changeSet:
+      id: 1736801287067-2
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: date
+                  type: DATE
+            tableName: close_date
+  - changeSet:
+      id: 1736801287067-3
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: date
+            tableName: order
+  - changeSet:
+      id: 1736801287067-4
+      author: dubouskir
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: date
+                  type: DATE
+            tableName: order
+
