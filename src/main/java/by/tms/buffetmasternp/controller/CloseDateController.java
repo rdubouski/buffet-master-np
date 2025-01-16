@@ -1,6 +1,5 @@
 package by.tms.buffetmasternp.controller;
 
-import by.tms.buffetmasternp.entity.Ingredient;
 import by.tms.buffetmasternp.service.CloseDateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin/close-date")
