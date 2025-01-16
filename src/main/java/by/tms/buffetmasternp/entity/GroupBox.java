@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "group")
-public class Group {
+@Table(name = "group_box")
+public class GroupBox {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

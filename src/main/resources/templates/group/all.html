@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Группы</title>
+    <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}"></header>
+<div class="container" style="margin-top: 70px; margin-bottom: 50px">
+    <div class="accordion text-center" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Добавить группу
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form th:action="@{/admin/group/add}" method="post">
+                        <div class="mb-3">
+                            <label for="exampleInputName" class="form-label">Название группы</label>
+                            <input type="text" name="groupName" class="form-control" id="exampleInputName">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Группы:</h3>
+    <ul class="list-group">
+        <li class="list-group-item" th:each="group : ${groups}">
+            <a th:href="@{/admin/group/edit(id=${group.id})}" th:text="${group.name}"></a>
+        </li>
+    </ul>
+</div>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+<th:block th:insert="~{blocks/bootstrap :: bootstrapscript}"></th:block>
+</html>

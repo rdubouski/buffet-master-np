@@ -21,7 +21,7 @@ public class Box {
 
     @ManyToOne
     @JoinColumn(name = "id_group")
-    private Group group;
+    private GroupBox groupBox;
 
     @ManyToOne
     @JoinColumn(name = "id_account")

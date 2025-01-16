@@ -120,7 +120,7 @@ databaseChangeLog:
               - column:
                   name: name
                   type: VARCHAR(255)
-            tableName: group
+            tableName: group_box
   - changeSet:
       id: 1736690125400-6
       author: dubouskir
@@ -331,7 +331,7 @@ databaseChangeLog:
             baseTableName: box
             constraintName: FK_BOX_ON_ID_GROUP
             referencedColumnNames: id
-            referencedTableName: group
+            referencedTableName: group_box
   - changeSet:
       id: 1736690125400-17
       author: dubouskir
