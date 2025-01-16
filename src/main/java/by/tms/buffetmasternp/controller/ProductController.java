@@ -29,7 +29,7 @@ public class ProductController {
 
     @PostMapping("/admin/add")
     public String addProduct(Product product, Model model) {
-        System.out.println(product);
+        productService.save(product);
         return "redirect:/product/admin/add";
     }
 }

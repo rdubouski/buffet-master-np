@@ -22,7 +22,7 @@ public class Product {
 
     @JoinTable(name = "product_ingredient")
     @ManyToMany
-    private List<Ingredient> ingredients;
+    private List<Ingredient> ingredient;
 
     @Column(name = "name")
     private String name;

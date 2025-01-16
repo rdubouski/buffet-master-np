@@ -10,9 +10,6 @@
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a class="nav-link" href="#">Catalog</a>
                     </li>
-                    <li class="nav-item" >
-
-                    </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" href="/profile">Профиль</a>
                     </li>
@@ -25,11 +22,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/admin/ingredient/all">Ингредиенты</a></li>
-                            <li><a class="dropdown-item" href="/admin/close-date">Календарь</a></li>
                             <li><a class="dropdown-item" href="/product/admin/add">Закуски</a></li>
                             <li><a class="dropdown-item" href="/admin/box">Боксы</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/catalog/admin/create">Добавить тип продукта</a></li>
+                            <li><a class="dropdown-item" href="/admin/close-date">Календарь</a></li>
                         </ul>
                     </li>
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
@@ -39,10 +35,6 @@
                         <a class="nav-link" href="/account/reg">Регистрация</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 <form th:action="@{/account/logout}" method="post">
                     <button sec:authorize="isAuthenticated()" class="btn btn-outline-success">Выход</button>
                 </form>
