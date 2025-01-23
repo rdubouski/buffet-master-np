@@ -4,6 +4,7 @@ import by.tms.buffetmasternp.dto.BoxDto;
 import by.tms.buffetmasternp.dto.BoxItemDto;
 import by.tms.buffetmasternp.entity.Account;
 import by.tms.buffetmasternp.entity.Box;
+import by.tms.buffetmasternp.entity.BoxItem;
 import by.tms.buffetmasternp.entity.Product;
 import by.tms.buffetmasternp.enums.Role;
 import by.tms.buffetmasternp.enums.Status;
@@ -11,6 +12,7 @@ import by.tms.buffetmasternp.enums.Type;
 import by.tms.buffetmasternp.repository.BoxItemRepository;
 import by.tms.buffetmasternp.repository.BoxRepository;
 import by.tms.buffetmasternp.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -41,19 +43,19 @@ public class BoxService {
         boxDto.setType(box.getType());
         return boxDto;
     }
-    
-//    public BoxDto addBox(BoxDto boxDto, Authentication authentication) {
-//        Box box = getBox(boxDto, authentication);
-//        boxRepository.save(box);
-//        for (BoxItem item: boxDto.getBoxItems()) {
-//            BoxItem boxItem = new BoxItem();
-//            boxItem.setBox(box);
-//            boxItem.setProduct(item.getProduct());
-//            boxItem.setQuantity(item.getQuantity());
-//            boxItemRepository.save(boxItem);
-//        }
-//        return boxDto;
-//    }
+
+    @Transactional
+    public void addBox(BoxDto boxDto, Authentication authentication) {
+        Box box = getBox(boxDto, authentication);
+        boxRepository.save(box);
+        for (BoxItemDto item: boxDto.getBoxItemDtos()) {
+            BoxItem boxItem = new BoxItem();
+            boxItem.setBox(box);
+            boxItem.setProduct(productRepository.findById(item.getProductId()).get());
+            boxItem.setQuantity(item.getQuantity());
+            boxItemRepository.save(boxItem);
+        }
+    }
 
     public List<BoxItemDto> getBoxItemDtoByBox(List<BoxItemDto> boxItemDtos, Long productId, int quantity) {
         Optional<Product> productOptional = productRepository.findById(productId);

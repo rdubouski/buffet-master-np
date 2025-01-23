@@ -18,6 +18,6 @@ public class BoxDto {
     private String image;
     private Status status;
     private Type type;
-//    private List<BoxItemDto> boxItemDto;
+    private List<BoxItemDto> boxItemDtos;
     private GroupBox groupBox;
 }

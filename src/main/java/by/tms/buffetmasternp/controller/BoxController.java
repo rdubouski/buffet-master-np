@@ -7,7 +7,6 @@ import by.tms.buffetmasternp.service.BoxService;
 import by.tms.buffetmasternp.service.GroupBoxService;
 import by.tms.buffetmasternp.service.ProductService;
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -32,13 +31,13 @@ public class BoxController {
     public String addBox(Model model, HttpSession session) {
         BoxDto boxDto = new BoxDto();
         List<GroupBox> groupBoxes = groupBoxService.getAllGroups();
-        List<BoxItemDto> boxItemDtos = productService.getAllBoxItemsDto();
         List<BoxItemDto> boxItemDtoList;
         if (session.getAttribute("boxItemDtoList") == null) {
             boxItemDtoList = new ArrayList<>();
         } else {
             boxItemDtoList = (List<BoxItemDto>) session.getAttribute("boxItemDtoList");
         }
+        List<BoxItemDto> boxItemDtos = productService.getAllBoxItemsDto(boxItemDtoList);
         model.addAttribute("boxDto", boxDto);
         model.addAttribute("groupsBox", groupBoxes);
         model.addAttribute("productsAll", boxItemDtos);
@@ -48,9 +47,9 @@ public class BoxController {
 
     @PostMapping("/admin/add")
     public String addBox(@ModelAttribute("boxDto") BoxDto boxDto, HttpSession session, Model model, Authentication authentication) {
-        //boxService.addBox(boxDto, authentication);
-        System.out.println(boxDto);
-        //model.addAttribute("boxDto", boxDto);
+        boxDto.setBoxItemDtos((List<BoxItemDto>) session.getAttribute("boxItemDtoList"));
+        boxService.addBox(boxDto, authentication);
+        session.setAttribute("boxItemDtoList", null);
         return "redirect:/box/admin/add";
     }
 

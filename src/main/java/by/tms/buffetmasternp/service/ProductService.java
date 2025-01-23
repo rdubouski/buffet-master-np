@@ -26,8 +26,15 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<BoxItemDto> getAllBoxItemsDto() {
-        List<Product> products = productRepository.findAll();
+    public List<BoxItemDto> getAllBoxItemsDto(List<BoxItemDto> list) {
+        List<Long> boxIds = new ArrayList<>();
+        for (BoxItemDto boxItemDto : list) {
+            boxIds.add(boxItemDto.productId);
+        }
+        if (boxIds.isEmpty()) {
+            boxIds.add(0L);
+        }
+        List<Product> products = productRepository.findAllByIdNotIn(boxIds);
         List<BoxItemDto> boxItemDtos = new ArrayList<>();
         for (Product product : products) {
             BoxItemDto boxItemDto = new BoxItemDto();

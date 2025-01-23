@@ -12,7 +12,7 @@ public class ExceptionController {
 
     @ExceptionHandler(DateTimeParseException.class)
     public String handleDateTimeParseException(DateTimeParseException ex, Model model) {
-        model.addAttribute("error", ex.getMessage());
+        model.addAttribute("message", ex.getMessage());
         return "error";
     }
 
