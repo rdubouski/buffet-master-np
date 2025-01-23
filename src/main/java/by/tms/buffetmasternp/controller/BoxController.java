@@ -7,7 +7,6 @@ import by.tms.buffetmasternp.service.BoxService;
 import by.tms.buffetmasternp.service.GroupBoxService;
 import by.tms.buffetmasternp.service.ProductService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +19,15 @@ import java.util.List;
 @RequestMapping("/box")
 public class BoxController {
 
-    @Autowired
-    private BoxService boxService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private GroupBoxService groupBoxService;
+    private final BoxService boxService;
+    private final ProductService productService;
+    private final GroupBoxService groupBoxService;
+
+    public BoxController(BoxService boxService, ProductService productService, GroupBoxService groupBoxService) {
+        this.boxService = boxService;
+        this.productService = productService;
+        this.groupBoxService = groupBoxService;
+    }
 
     @GetMapping("/admin/add")
     public String addBox(Model model, HttpSession session) {
@@ -46,7 +48,7 @@ public class BoxController {
     }
 
     @PostMapping("/admin/add")
-    public String addBox(@ModelAttribute("boxDto") BoxDto boxDto, HttpSession session, Model model, Authentication authentication) {
+    public String addBox(@ModelAttribute("boxDto") BoxDto boxDto, HttpSession session, Authentication authentication) {
         boxDto.setBoxItemDtos((List<BoxItemDto>) session.getAttribute("boxItemDtoList"));
         boxService.addBox(boxDto, authentication);
         session.setAttribute("boxItemDtoList", null);
@@ -54,7 +56,7 @@ public class BoxController {
     }
 
     @PostMapping("/admin/product-add")
-    public String addProductBox(HttpSession session, Model model,
+    public String addProductBox(HttpSession session,
                                 @RequestParam("productId") Long id,
                                 @RequestParam("quantity") int quantity) {
 

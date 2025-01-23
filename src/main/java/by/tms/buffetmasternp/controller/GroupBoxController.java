@@ -2,7 +2,6 @@ package by.tms.buffetmasternp.controller;
 
 import by.tms.buffetmasternp.entity.GroupBox;
 import by.tms.buffetmasternp.service.GroupBoxService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin/group")
 public class GroupBoxController {
 
-    @Autowired
-    private GroupBoxService groupBoxService;
+    private final GroupBoxService groupBoxService;
+
+    public GroupBoxController(GroupBoxService groupBoxService) {
+        this.groupBoxService = groupBoxService;
+    }
 
     @GetMapping("/all")
     public String getAllIngredients(Model model) {

@@ -2,7 +2,6 @@ package by.tms.buffetmasternp.service;
 
 import by.tms.buffetmasternp.entity.CloseDate;
 import by.tms.buffetmasternp.repository.CloseDateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,8 +14,11 @@ import java.util.Locale;
 @Service
 public class CloseDateService {
 
-    @Autowired
-    private CloseDateRepository closeDateRepository;
+    private final CloseDateRepository closeDateRepository;
+
+    public CloseDateService(CloseDateRepository closeDateRepository) {
+        this.closeDateRepository = closeDateRepository;
+    }
 
     public List<String> getAllCloseDates() {
 
@@ -38,7 +40,7 @@ public class CloseDateService {
 
     public void addCloseDate(String stringDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy", Locale.ENGLISH);
-        LocalDate localDate = null;
+        LocalDate localDate;
         try {
             localDate = LocalDate.parse(stringDate, formatter);
         } catch (DateTimeParseException e) {

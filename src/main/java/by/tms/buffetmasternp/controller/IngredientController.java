@@ -2,7 +2,6 @@ package by.tms.buffetmasternp.controller;
 
 import by.tms.buffetmasternp.entity.Ingredient;
 import by.tms.buffetmasternp.service.IngredientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin/ingredient")
 public class IngredientController {
 
-    @Autowired
-    private IngredientService ingredientService;
+    private final IngredientService ingredientService;
+
+    public IngredientController(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
+    }
 
     @GetMapping("/all")
     public String getIngredients(Model model) {
@@ -22,7 +24,7 @@ public class IngredientController {
 
     @PostMapping("/add")
     public String addIngredient(@ModelAttribute("ingredientName") String ingredientName, Model model) {
-        Ingredient ingredient = ingredientService.createIngredient(ingredientName);
+        ingredientService.createIngredient(ingredientName);
         model.addAttribute("ingredients", ingredientService.getAllIngredients());
         return "redirect:/admin/ingredient/all";
     }

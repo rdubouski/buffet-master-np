@@ -7,7 +7,6 @@ import by.tms.buffetmasternp.repository.AccountRepository;
 import by.tms.buffetmasternp.repository.ProfileRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +15,13 @@ import java.util.Optional;
 @Service
 public class ProfileService {
 
-    @Autowired
-    private ProfileRepository profileRepository;
-    @Autowired
-    private AccountRepository accountRepository;
+    private final ProfileRepository profileRepository;
+    private final AccountRepository accountRepository;
+
+    public ProfileService(ProfileRepository profileRepository, AccountRepository accountRepository) {
+        this.profileRepository = profileRepository;
+        this.accountRepository = accountRepository;
+    }
 
     public ProfileDto getProfile(Authentication authentication) {
         Optional<Account> accountOptional = accountRepository.findByUsername(authentication.getName());

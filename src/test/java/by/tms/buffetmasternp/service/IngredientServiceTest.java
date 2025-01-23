@@ -4,100 +4,91 @@ import by.tms.buffetmasternp.entity.Ingredient;
 import by.tms.buffetmasternp.repository.IngredientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class IngredientServiceTest {
-
-    @InjectMocks
-    private IngredientService ingredientService;
+class IngredientServiceTest {
 
     @Mock
     private IngredientRepository ingredientRepository;
 
+    @InjectMocks
+    private IngredientService ingredientService;
+
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGetAllIngredients() {
-        Ingredient ingredient1 = new Ingredient();
-        ingredient1.setName("Tomato");
-        Ingredient ingredient2 = new Ingredient();
-        ingredient2.setName("Lettuce");
+    void testGetAllIngredients() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Tomato");
 
-        when(ingredientRepository.findAll()).thenReturn(Arrays.asList(ingredient1, ingredient2));
+        when(ingredientRepository.findAll()).thenReturn(Collections.singletonList(ingredient));
 
         List<Ingredient> ingredients = ingredientService.getAllIngredients();
 
-        assertEquals(2, ingredients.size());
-        assertEquals("Tomato", ingredients.get(0).getName());
+        assertNotNull(ingredients);
+        assertEquals(1, ingredients.size());
+        assertEquals("Tomato", ingredients.getFirst().getName());
+        verify(ingredientRepository, times(1)).findAll();
     }
 
     @Test
-    public void testCreateIngredient() {
-        String ingredientName = "Cheese";
+    void testCreateIngredient() {
+        String ingredientName = "Lettuce";
+        ingredientService.createIngredient(ingredientName);
+
         Ingredient ingredient = new Ingredient();
         ingredient.setName(ingredientName);
 
-        when(ingredientRepository.save(any(Ingredient.class))).thenReturn(ingredient);
-
-        Ingredient createdIngredient = ingredientService.createIngredient(ingredientName);
-
-        assertNotNull(createdIngredient);
-        assertEquals("Cheese", createdIngredient.getName());
-
-        ArgumentCaptor<Ingredient> ingredientCaptor = ArgumentCaptor.forClass(Ingredient.class);
-        verify(ingredientRepository, times(1)).save(ingredientCaptor.capture());
-        assertEquals("Cheese", ingredientCaptor.getValue().getName());
+        verify(ingredientRepository, times(1)).save(ingredient);
     }
 
     @Test
-    public void testGetIngredientById() {
+    void testGetIngredientById() {
+        Long id = 1L;
         Ingredient ingredient = new Ingredient();
-        ingredient.setName("Salt");
-        Long ingredientId = 1L;
+        ingredient.setId(id);
+        ingredient.setName("Cucumber");
 
-        when(ingredientRepository.findById(ingredientId)).thenReturn(Optional.of(ingredient));
+        when(ingredientRepository.findById(id)).thenReturn(Optional.of(ingredient));
 
-        Ingredient foundIngredient = ingredientService.getIngredientById(ingredientId);
+        Ingredient foundIngredient = ingredientService.getIngredientById(id);
 
         assertNotNull(foundIngredient);
-        assertEquals("Salt", foundIngredient.getName());
+        assertEquals("Cucumber", foundIngredient.getName());
+        verify(ingredientRepository, times(1)).findById(id);
     }
 
     @Test
-    public void testGetIngredientByIdNotFound() {
-        Long ingredientId = 1L;
+    void testGetIngredientById_NotFound() {
+        Long id = 2L;
 
-        when(ingredientRepository.findById(ingredientId)).thenReturn(Optional.empty());
+        when(ingredientRepository.findById(id)).thenReturn(Optional.empty());
 
-        Ingredient foundIngredient = ingredientService.getIngredientById(ingredientId);
+        Ingredient foundIngredient = ingredientService.getIngredientById(id);
 
         assertNull(foundIngredient);
+        verify(ingredientRepository, times(1)).findById(id);
     }
 
     @Test
-    public void testUpdateIngredient() {
+    void testUpdateIngredient() {
         Ingredient ingredient = new Ingredient();
-        ingredient.setName("Pepper");
+        ingredient.setId(1L);
+        ingredient.setName("Onion");
 
-        when(ingredientRepository.save(any(Ingredient.class))).thenReturn(ingredient);
-
-        Ingredient updatedIngredient = ingredientService.updateIngredient(ingredient);
-
-        assertNotNull(updatedIngredient);
-        assertEquals("Pepper", updatedIngredient.getName());
+        ingredientService.updateIngredient(ingredient);
 
         verify(ingredientRepository, times(1)).save(ingredient);
     }

@@ -1,7 +1,6 @@
 package by.tms.buffetmasternp.controller;
 
 import by.tms.buffetmasternp.service.CloseDateService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,11 @@ import java.util.List;
 @RequestMapping("/admin/close-date")
 public class CloseDateController {
 
-    @Autowired
-    private CloseDateService closeDateService;
+    private final CloseDateService closeDateService;
+
+    public CloseDateController(CloseDateService closeDateService) {
+        this.closeDateService = closeDateService;
+    }
 
     @GetMapping
     public String closeDatePage(Model model) {
@@ -26,7 +28,7 @@ public class CloseDateController {
     }
 
     @PostMapping("/add")
-    public String addCloseDate(@ModelAttribute("closeDate") String closeDate, Model model) {
+    public String addCloseDate(@ModelAttribute("closeDate") String closeDate) {
         closeDateService.addCloseDate(closeDate);
         return "redirect:/admin/close-date";
     }

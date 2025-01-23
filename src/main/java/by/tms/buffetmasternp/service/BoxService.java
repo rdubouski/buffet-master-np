@@ -13,7 +13,6 @@ import by.tms.buffetmasternp.repository.BoxItemRepository;
 import by.tms.buffetmasternp.repository.BoxRepository;
 import by.tms.buffetmasternp.repository.ProductRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +22,16 @@ import java.util.Optional;
 @Service
 public class BoxService {
 
-    @Autowired
-    private BoxRepository boxRepository;
+    private final BoxRepository boxRepository;
+    private final BoxItemRepository boxItemRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    private BoxItemRepository boxItemRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
+    public BoxService(BoxRepository boxRepository, BoxItemRepository boxItemRepository,
+                      ProductRepository productRepository) {
+        this.boxRepository = boxRepository;
+        this.boxItemRepository = boxItemRepository;
+        this.productRepository = productRepository;
+    }
 
     public BoxDto getBoxDtoById(Long id) {
         Box box = boxRepository.findById(id).orElse(null);

@@ -7,7 +7,6 @@ import by.tms.buffetmasternp.enums.Role;
 import by.tms.buffetmasternp.repository.AccountRepository;
 import by.tms.buffetmasternp.repository.ProfileRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,13 +18,15 @@ import java.util.Optional;
 @Service
 public class AccountService implements UserDetailsService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ProfileRepository profileRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private ProfileRepository profileRepository;
+    public AccountService(AccountRepository accountRepository, PasswordEncoder passwordEncoder, ProfileRepository profileRepository) {
+        this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.profileRepository = profileRepository;
+    }
 
     @Transactional
     public void create(AccountRegDto accountRegDto) {

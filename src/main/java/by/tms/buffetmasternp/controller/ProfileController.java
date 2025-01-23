@@ -2,7 +2,6 @@ package by.tms.buffetmasternp.controller;
 
 import by.tms.buffetmasternp.dto.ProfileDto;
 import by.tms.buffetmasternp.service.ProfileService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/profile")
 public class ProfileController {
 
-    @Autowired
-    private ProfileService profileService;
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
 
     @GetMapping
     public String profile(Model model, Authentication authentication) {
