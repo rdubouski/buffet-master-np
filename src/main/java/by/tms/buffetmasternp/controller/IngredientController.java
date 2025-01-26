@@ -29,8 +29,8 @@ public class IngredientController {
         return "redirect:/admin/ingredient/all";
     }
 
-    @GetMapping("/edit")
-    public String editIngredient(@RequestParam("id") Long id, Model model) {
+    @GetMapping("/edit/{id}")
+    public String editIngredient(@PathVariable("id") Long id, Model model) {
         Ingredient ingredient = ingredientService.getIngredientById(id);
         model.addAttribute("ingredient", ingredient);
         return "ingredient/edit";

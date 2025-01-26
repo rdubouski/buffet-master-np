@@ -31,7 +31,7 @@
     <h3>Ингредиенты:</h3>
     <ul class="list-group">
         <li class="list-group-item" th:each="ingredient : ${ingredients}">
-            <a th:href="@{/admin/ingredient/edit(id=${ingredient.id})}" th:text="${ingredient.name}"></a>
+            <a th:href="@{/admin/ingredient/edit/{id}(id=${ingredient.id})}" th:text="${ingredient.name}"></a>
         </li>
     </ul>
 </div>

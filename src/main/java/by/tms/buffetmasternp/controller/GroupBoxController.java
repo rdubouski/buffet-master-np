@@ -29,8 +29,8 @@ public class GroupBoxController {
         return "redirect:/admin/group/all";
     }
 
-    @GetMapping("/edit")
-    public String edit(@RequestParam("id") Long id, Model model) {
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Long id, Model model) {
         GroupBox group = groupBoxService.getGroupById(id);
         model.addAttribute("group", group);
         return "group/edit";

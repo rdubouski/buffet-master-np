@@ -31,7 +31,7 @@
     <h3>Группы:</h3>
     <ul class="list-group">
         <li class="list-group-item" th:each="group : ${groups}">
-            <a th:href="@{/admin/group/edit(id=${group.id})}" th:text="${group.name}"></a>
+            <a th:href="@{/admin/group/edit/{id}(id=${group.id})}" th:text="${group.name}"></a>
         </li>
     </ul>
 </div>

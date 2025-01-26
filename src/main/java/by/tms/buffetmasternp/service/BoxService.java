@@ -12,6 +12,7 @@ import by.tms.buffetmasternp.enums.Type;
 import by.tms.buffetmasternp.repository.BoxItemRepository;
 import by.tms.buffetmasternp.repository.BoxRepository;
 import by.tms.buffetmasternp.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -68,7 +69,9 @@ public class BoxService {
             boxItemDto.setImageUrl(product.getImage());
             boxItemDto.setQuantity(quantity);
             boxItemDtos.add(boxItemDto);
-        } //добавить исключение
+        } else {
+            throw new EntityNotFoundException("Закуска с id " + productId + " не найдена");
+        }
         return boxItemDtos;
     }
 

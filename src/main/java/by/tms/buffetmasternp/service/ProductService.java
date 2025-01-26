@@ -4,10 +4,12 @@ import by.tms.buffetmasternp.dto.BoxItemDto;
 import by.tms.buffetmasternp.entity.Product;
 import by.tms.buffetmasternp.enums.Status;
 import by.tms.buffetmasternp.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -22,10 +24,33 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getAllProductsByStatus(Status status) {
+        return productRepository.findAllByStatus(status);
+    }
+
     public void save(Product product) {
-        System.out.println(product);
         product.setStatus(Status.OPEN);
         productRepository.save(product);
+    }
+
+    public Product getProductById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            return product.get();
+        } else {
+            throw new EntityNotFoundException("Закуска с id " + id + " не найдена");
+        }
+    }
+
+    public void closeProduct(Long id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            product.setStatus(Status.CLOSED);
+            productRepository.save(product);
+        } else {
+            throw new EntityNotFoundException("Закуска с id " + id + " не найдена");
+        }
     }
 
     public List<BoxItemDto> getAllBoxItemsDto(List<BoxItemDto> list) {
