@@ -29,7 +29,7 @@ public class ProductController {
     @GetMapping("/admin/archive")
     public String allArchiveProducts(Model model) {
         model.addAttribute("products", productService.getAllProductsByStatus(Status.CLOSED));
-        return "product/all";
+        return "product/archive";
     }
 
     @GetMapping("/admin/add")
@@ -59,8 +59,8 @@ public class ProductController {
     }
 
     @PostMapping("/admin/edit")
-    public String editProduct(@RequestParam("id") Long id) {
-        System.out.println("editProduct" + id);
+    public String editProduct(@ModelAttribute Product product) {
+        productService.editProduct(product);
         return "redirect:/product/admin/all";
     }
 }

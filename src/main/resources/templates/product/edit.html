@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Добавить закуску</title>
+    <title>Редактировать закуску</title>
     <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
 </head>
 <body>
@@ -12,35 +12,30 @@
         <div class="col-6">
             <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
-                    <form th:action="@{/product/admin/add}" th:object="${product}" method="post">
-                        <h2 class="text-center mb-5">Добавить закуску</h2>
+                    <form th:action="@{/product/admin/edit}" th:object="${product}" method="post">
+                        <input type="hidden" th:value="${product.id}" th:field="*{id}">
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="name">Название</label>
-                            <input type="text" th:field="*{name}" id="name" class="form-control form-control-lg">
+                            <input type="text" th:field="*{name}" th:value="${product.name}" id="name" class="form-control form-control-lg">
                         </div>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="description">Описание</label>
-                            <textarea rows="5" th:field="*{description}" id="description" class="form-control form-control-lg"></textarea>
+                            <textarea rows="5" th:field="*{description}" th:value="${product.description}" id="description" class="form-control form-control-lg"></textarea>
                         </div>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="image">Ссылка на изображение</label>
-                            <input type="text" th:field="*{image}" id="image" class="form-control form-control-lg">
+                            <input type="text" th:field="*{image}" th:value="${product.image}" id="image" class="form-control form-control-lg">
                         </div>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="min">Минимальный заказ, штук</label>
-                            <input type="text" th:field="*{min}" id="min" class="form-control form-control-lg">
+                            <input type="text" th:field="*{min}" th:value="${product.min}" id="min" class="form-control form-control-lg">
                         </div>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="price">Цена за штуку</label>
-                            <input type="text" th:field="*{price}" id="price" class="form-control form-control-lg">
-                        </div>
-                        <h5>Выбрать ингредиенты</h5>
-                        <div th:each="ingredientAll : ${ingredientsAll}">
-                            <input type="checkbox" th:field="*{ingredient}" th:value="${ingredientAll.id}">
-                            <span th:text="${ingredientAll.name}"></span><br>
+                            <input type="text" th:field="*{price}" th:value="${product.price}" id="price" class="form-control form-control-lg">
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button  type="submit" class="btn btn-primary">Добавить</button>
+                            <button  type="submit" class="btn btn-primary">Сохранить</button>
                         </div>
                     </form>
                 </div>

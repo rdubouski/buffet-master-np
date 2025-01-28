@@ -8,6 +8,8 @@ databaseChangeLog:
       file: db/changelog/13-01-changelog.yaml
   - include:
       file: db/changelog/13-02-changelog.yaml
+  - include:
+      file: db/changelog/27-01-changelog.yaml
 
 
 

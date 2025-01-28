@@ -53,6 +53,20 @@ public class ProductService {
         }
     }
 
+    public void editProduct(Product product) {
+        Product newProduct = new Product();
+        Product oldProduct = getProductById(product.getId());
+        newProduct.setId(product.getId());
+        newProduct.setName(product.getName());
+        newProduct.setDescription(product.getDescription());
+        newProduct.setStatus(oldProduct.getStatus());
+        newProduct.setPrice(product.getPrice());
+        newProduct.setImage(product.getImage());
+        newProduct.setMin(product.getMin());
+        newProduct.setIngredient(product.getIngredient());
+        productRepository.save(newProduct);
+    }
+
     public List<BoxItemDto> getAllBoxItemsDto(List<BoxItemDto> list) {
         List<Long> boxIds = new ArrayList<>();
         for (BoxItemDto boxItemDto : list) {

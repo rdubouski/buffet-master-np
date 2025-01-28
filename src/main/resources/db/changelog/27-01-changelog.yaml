@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: account
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: "1"
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$11$JQlUSlkUL8oC4gmM5rudBefnro93kJzP3WdIpDhWRzsTIhTGQd8qK"
+        - insert:
+            tableName: profile
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: "1"
+              - column:
+                  name: id_account
+                  valueNumeric: "1"
+              - column:
+                  name: first_name
+                  value: "admin"
+              - column:
+                  name: last_name
+                  value: "admin"
+        - insert:
+            tableName: account_authorities
+            columns:
+              - column:
+                  name: authorities
+                  valueNumeric: "1"
+              - column:
+                  name: account_id
+                  valueNumeric: "1"
+
