@@ -1,0 +1,932 @@
+databaseChangeLog:
+  - changeSet:
+      id: group-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Детское меню"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Брускетты"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Тарталетки"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Канапе"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Рулеты"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Салаты"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Десерты"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Профитроли"
+        - insert:
+            tableName: group_box
+            columns:
+              - column:
+                  name: name
+                  value: "Разное"
+  - changeSet:
+      id: ingredient-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Творожный сыр"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Мидии"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Кисло-сладкий соус"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Форель"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Оливка"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Лимон"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Салями"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Свежий огурец"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Бекон"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Бородинский хлеб"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Корнишоны"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Французская горчица"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Айсберг"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Куриное филе"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Томаты черри"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Перепелиные яйца"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Шпинатный бисквит"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Свекольный бисквит"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Сельдь"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Листья салата"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Лосось"
+        - insert:
+            tableName: ingredient
+            columns:
+              - column:
+                  name: name
+                  value: "Креветки"
+  - changeSet:
+      id: product-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Тарталетка с мидиями"
+              - column:
+                  name: description
+                  value: "Творожный сыр, мидии, кисло-сладкий соус"
+              - column:
+                  name: price
+                  valueNumeric: "3.1"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_1853.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Канапе с форелью на слоеном тесте"
+              - column:
+                  name: description
+                  value: "Форель, оливка, лимон, творожный сыр"
+              - column:
+                  name: price
+                  valueNumeric: "3.6"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_1868.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Канапе с салями на слоеном тесте"
+              - column:
+                  name: description
+                  value: "Салями, свежий огурец, творожный сыр"
+              - column:
+                  name: price
+                  valueNumeric: "2.3"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_1872.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Креветки темпура"
+              - column:
+                  name: description
+                  value: "Подаются с кисло-сладким соусом"
+              - column:
+                  name: price
+                  valueNumeric: "2.5"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_1886.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "10"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Канапе на бородинском хлебе с беконом"
+              - column:
+                  name: description
+                  value: "Бекон, бородинский хлеб, творожная намазка с хреном, корнишоны, французская горчица"
+              - column:
+                  name: price
+                  valueNumeric: "3"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_4521.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Салат Цезарь"
+              - column:
+                  name: description
+                  value: "Айсберг, соус, куриное филе, томаты черри, пармезан, перепелиные яйца"
+              - column:
+                  name: price
+                  valueNumeric: "8"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_4540.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "4"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Шпинатный рулет"
+              - column:
+                  name: description
+                  value: "14-16 кусочков\r\nШпинатный бисквит, форель, творожный сыр"
+              - column:
+                  name: price
+                  valueNumeric: "44"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_8988.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "1"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Свекольный рулет"
+              - column:
+                  name: description
+                  value: "14-16 кусочков\r\nСвекольный бисквит, сельдь, творожный сыр, листья салата"
+              - column:
+                  name: price
+                  valueNumeric: "33"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_8990.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "1"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Тарталетка с муссом из лосося"
+              - column:
+                  name: description
+                  value: "Тарталетка с муссом из лосося"
+              - column:
+                  name: price
+                  valueNumeric: "3"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_0656.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Вафли с ветчиной и сыром чеддер"
+              - column:
+                  name: description
+                  value: "Вафли с ветчиной и сыром чеддер"
+              - column:
+                  name: price
+                  valueNumeric: "2.7"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_6110.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Мини-бургер с куриной котлетой"
+              - column:
+                  name: description
+                  value: "Мини-бургер с куриной котлетой"
+              - column:
+                  name: price
+                  valueNumeric: "5"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9267.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Стрипсы из куриного филе"
+              - column:
+                  name: description
+                  value: "Подаются с кетчупом"
+              - column:
+                  name: price
+                  valueNumeric: "9"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9288.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Профитроли с муссом из цыпленка и хрустящим луком"
+              - column:
+                  name: description
+                  value: "Профитроли с муссом из цыпленка и хрустящим луком"
+              - column:
+                  name: price
+                  valueNumeric: "3.4"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9823.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Профитроли с паштетом"
+              - column:
+                  name: description
+                  value: "Профитроли с паштетом"
+              - column:
+                  name: price
+                  valueNumeric: "3.4"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9823.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Профитроли с форелью"
+              - column:
+                  name: description
+                  value: "Профитроли с форелью"
+              - column:
+                  name: price
+                  valueNumeric: "3.4"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9823.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Профитроли с кремом дор блю и грушей"
+              - column:
+                  name: description
+                  value: "Профитроли с кремом дор блю и грушей"
+              - column:
+                  name: price
+                  valueNumeric: "3.4"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9823.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Профитроли с сырно-яичным муссом"
+              - column:
+                  name: description
+                  value: "Профитроли с сырно-яичным муссом"
+              - column:
+                  name: price
+                  valueNumeric: "3.4"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9823.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Рулетики из ветчины с сыром и чесноком"
+              - column:
+                  name: description
+                  value: "Рулетики из ветчины с сыром и чесноком"
+              - column:
+                  name: price
+                  valueNumeric: "1.6"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_0002.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "10"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Рулетики из баклажана с сыром, грецким орехом и чесноком"
+              - column:
+                  name: description
+                  value: "Рулетики из баклажана с сыром, грецким орехом и чесноком"
+              - column:
+                  name: price
+                  valueNumeric: "2"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_0301.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "10"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Тарталетка с креветкой"
+              - column:
+                  name: description
+                  value: "Креветка, творожный сыр, лимон"
+              - column:
+                  name: price
+                  valueNumeric: "3.3"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_0651.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Тарталетка с грушей и сыром Камамбер"
+              - column:
+                  name: description
+                  value: "Груша, сыр Камамбер, творожный сыр, грецкий орех, мед"
+              - column:
+                  name: price
+                  valueNumeric: "2.9"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_1657.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Брускетта Цезарь"
+              - column:
+                  name: description
+                  value: "Брускетта Цезарь"
+              - column:
+                  name: price
+                  valueNumeric: "3.4"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_1663.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Мини-пицца с колбасой"
+              - column:
+                  name: description
+                  value: "Мини-пицца с колбасой"
+              - column:
+                  name: price
+                  valueNumeric: "3.5"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_0834.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Трайфл Молочная девочка"
+              - column:
+                  name: description
+                  value: "Украшается сезонными ягодами/фруктами"
+              - column:
+                  name: price
+                  valueNumeric: "6"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9355.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: min
+                  valueNumeric: "6"
+  - changeSet:
+      id: prodingr-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "3"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "1"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "3"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "7"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "3"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "8"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "4"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "22"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "5"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "9"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "5"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "10"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "5"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "11"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "5"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "12"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "6"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "13"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "6"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "14"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "6"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "15"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "6"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "16"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "7"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "1"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "7"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "4"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "7"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "17"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "8"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "1"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "8"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "18"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "8"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "19"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "8"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "20"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "9"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "21"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "15"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "4"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "20"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "1"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "20"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "6"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "20"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "22"
+        - insert:
+            tableName: product_ingredient
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: "21"
+              - column:
+                  name: ingredient_id
+                  valueNumeric: "1"

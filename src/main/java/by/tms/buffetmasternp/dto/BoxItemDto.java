@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoxItemDto {
 
-    public Long productId;
-    public String productName;
-    public String imageUrl;
-    public int quantity;
+    private Long productId;
+    private String productName;
+    private String productDescription;
+    private String imageUrl;
+    private Double price;
+    private int min;
+    private int quantity;
 }

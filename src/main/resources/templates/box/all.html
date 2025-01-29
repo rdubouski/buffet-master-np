@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Закуски</title>
+    <title>Боксы</title>
     <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
 </head>
 <body>
@@ -12,8 +12,8 @@
         <div class="col">
             <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
-                    <a href="/product/admin/add">
-                        <button style="width: 100%">Добавить закуску</button>
+                    <a href="/box/admin/add">
+                        <button style="width: 100%">Добавить бокс</button>
                     </a>
 
                     <table class="table" style="width: 100%">
@@ -23,7 +23,7 @@
                             <th style="width: 30%">Описание</th>
                             <th style="width: 10%">Изображение</th>
                             <th style="width: 5%">Минимальное количество</th>
-                            <th style="width: 5%">Цена, шт</th>
+                            <th style="width: 5%">Цена</th>
                             <th style="width: 10%">Редактировать</th>
                             <th style="width: 10%">В архив</th>
                         </tr>
@@ -36,7 +36,7 @@
                                 <th scope="row"><input style="width: 100%; Border: none; outline: none;" type="text" th:value="${product.name}" name="name" readonly></th>
                                 <td><textarea rows="5" style="width: 100%; Border: none; outline: none;" th:text="${product.description}" name="description" readonly></textarea></td>
                                 <td style="text-align: center;">
-                                    <img class="rounded-circle" style="width:60px; height:60px"
+                                    <img class="rounded-circle" style="width:40px; height:40px"
                                          th:src="${product.image.length() > 0} ? (${product.image})
                                                             : 'https://www.sales-soluciones.es/server/Portal_0010494/img/products/no_image_xxl.jpg'">
                                 </td>

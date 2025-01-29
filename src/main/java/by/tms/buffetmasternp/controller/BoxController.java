@@ -29,6 +29,17 @@ public class BoxController {
         this.groupBoxService = groupBoxService;
     }
 
+    @GetMapping("/admin/all")
+    public String allBoxes(Model model) {
+
+        return "box/all";
+    }
+
+    @GetMapping("/admin/archive")
+    public String archiveBoxes(Model model) {
+        return "box/archive";
+    }
+
     @GetMapping("/admin/add")
     public String addBox(Model model, HttpSession session) {
         BoxDto boxDto = new BoxDto();

@@ -25,10 +25,12 @@
                                     <table class="table" style="width: 100%">
                                         <thead class="thead-light">
                                         <tr>
-                                            <th style="width: 50%">Название</th>
-                                            <th style="width: 15%">Изображение</th>
-                                            <th style="width: 15%">Количество</th>
-                                            <th style="width: 20%">Добавить</th>
+                                            <th style="width: 30%">Название</th>
+                                            <th style="width: 30%">Описание</th>
+                                            <th style="width: 10%">Изображение</th>
+                                            <th style="width: 10%">Количество</th>
+                                            <th style="width: 10%">Цена, шт</th>
+                                            <th style="width: 10%">Добавить</th>
                                         </tr>
                                         </thead>
 
@@ -38,12 +40,14 @@
                                                 <tr>
                                                     <input type="hidden" th:value="${product.productId}" name="productId">
                                                     <th scope="row"><input style="width: 100%; Border: none; outline: none;" type="text" th:value="${product.productName}" name="productName" readonly></th>
-                                                    <td style="text-align: center; vertical-align: middle;">
-                                                        <img class="rounded-circle" style="width:40px; height:40px"
+                                                    <td><textarea rows="5" style="width: 100%; Border: none; outline: none;" th:text="${product.productDescription}" name="productDescription" readonly></textarea></td>
+                                                    <td style="text-align: center;">
+                                                        <img class="rounded-circle" style="width:60px; height:60px"
                                                              th:src="${product.imageUrl.length() > 0} ? (${product.imageUrl})
                                                             : 'https://www.sales-soluciones.es/server/Portal_0010494/img/products/no_image_xxl.jpg'">
                                                     </td>
-                                                    <td><input type="number" min="1" th:value="${product.quantity}" name="quantity"></td>
+                                                    <td><input style="width: 100%;" type="number" min="1" th:value="${product.min}" name="quantity"></td>
+                                                    <td><input style="width: 100%; Border: none; outline: none;" th:value="${product.price}" name="price"></td>
                                                     <td><button  type="submit" class="btn btn-primary">Добавить</button></td>
                                                 </tr>
                                             </form>

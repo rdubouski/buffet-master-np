@@ -7,9 +7,6 @@ databaseChangeLog:
             tableName: account
             columns:
               - column:
-                  name: id
-                  valueNumeric: "1"
-              - column:
                   name: username
                   value: "admin"
               - column:
@@ -18,9 +15,6 @@ databaseChangeLog:
         - insert:
             tableName: profile
             columns:
-              - column:
-                  name: id
-                  valueNumeric: "1"
               - column:
                   name: id_account
                   valueNumeric: "1"

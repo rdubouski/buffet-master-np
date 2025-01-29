@@ -46,6 +46,8 @@ public class BoxService {
         return boxDto;
     }
 
+
+
     @Transactional
     public void addBox(BoxDto boxDto, Authentication authentication) {
         Box box = getBox(boxDto, authentication);

@@ -70,17 +70,20 @@ public class ProductService {
     public List<BoxItemDto> getAllBoxItemsDto(List<BoxItemDto> list) {
         List<Long> boxIds = new ArrayList<>();
         for (BoxItemDto boxItemDto : list) {
-            boxIds.add(boxItemDto.productId);
+            boxIds.add(boxItemDto.getProductId());
         }
         if (boxIds.isEmpty()) {
             boxIds.add(0L);
         }
-        List<Product> products = productRepository.findAllByIdNotIn(boxIds);
+        List<Product> products = productRepository.findAllByStatusAndIdNotIn(Status.OPEN, boxIds);
         List<BoxItemDto> boxItemDtos = new ArrayList<>();
         for (Product product : products) {
             BoxItemDto boxItemDto = new BoxItemDto();
             boxItemDto.setProductId(product.getId());
             boxItemDto.setProductName(product.getName());
+            boxItemDto.setProductDescription(product.getDescription());
+            boxItemDto.setMin(product.getMin());
+            boxItemDto.setPrice(product.getPrice());
             boxItemDto.setImageUrl(product.getImage());
             boxItemDtos.add(boxItemDto);
         }
