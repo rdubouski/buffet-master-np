@@ -930,3 +930,155 @@ databaseChangeLog:
               - column:
                   name: ingredient_id
                   valueNumeric: "1"
+  - changeSet:
+      id: box-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: box
+            columns:
+              - column:
+                  name: id_group
+                  valueNumeric: "8"
+              - column:
+                  name: id_account
+                  valueNumeric: "1"
+              - column:
+                  name: name
+                  value: "Ассорти профитролей 25 шт."
+              - column:
+                  name: description
+                  value: "С муссом из цыпленка и хрустящим луком - 5 шт\r\nС паштетом - 5 шт\r\nС форелью - 5 шт\r\nС кремом дор блю и грушей - 5 шт\r\nС сырно-яичным муссом - 5 шт"
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9823.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: type
+                  value: "DEFAULT"
+        - insert:
+            tableName: box
+            columns:
+              - column:
+                  name: id_group
+                  valueNumeric: "1"
+              - column:
+                  name: id_account
+                  valueNumeric: "1"
+              - column:
+                  name: name
+                  value: "Детский бокс"
+              - column:
+                  name: description
+                  value: "Мини-бургеры с куриной котлетой - 6 шт.\r\nСтрипсы из куриного филе - 6 шт.\r\nВафли с ветчиной и сыром чеддер - 6 шт."
+              - column:
+                  name: image
+                  value: "https://github.com/rdubouski/foto/blob/main/src/diplom/IMG_9288.jpg?raw=true"
+              - column:
+                  name: status
+                  value: "OPEN"
+              - column:
+                  name: type
+                  value: "DEFAULT"
+  - changeSet:
+      id: boxitem-1
+      author: dubouskir
+      changes:
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "1"
+              - column:
+                  name: id_product
+                  valueNumeric: "13"
+              - column:
+                  name: quantity
+                  valueNumeric: "5"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "1"
+              - column:
+                  name: id_product
+                  valueNumeric: "14"
+              - column:
+                  name: quantity
+                  valueNumeric: "5"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "1"
+              - column:
+                  name: id_product
+                  valueNumeric: "15"
+              - column:
+                  name: quantity
+                  valueNumeric: "5"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "1"
+              - column:
+                  name: id_product
+                  valueNumeric: "16"
+              - column:
+                  name: quantity
+                  valueNumeric: "5"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "1"
+              - column:
+                  name: id_product
+                  valueNumeric: "17"
+              - column:
+                  name: quantity
+                  valueNumeric: "5"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "2"
+              - column:
+                  name: id_product
+                  valueNumeric: "11"
+              - column:
+                  name: quantity
+                  valueNumeric: "6"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "2"
+              - column:
+                  name: id_product
+                  valueNumeric: "12"
+              - column:
+                  name: quantity
+                  valueNumeric: "6"
+        - insert:
+            tableName: box_item
+            columns:
+              - column:
+                  name: id_box
+                  valueNumeric: "2"
+              - column:
+                  name: id_product
+                  valueNumeric: "10"
+              - column:
+                  name: quantity
+                  valueNumeric: "6"

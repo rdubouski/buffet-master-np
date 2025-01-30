@@ -1,6 +1,7 @@
 package by.tms.buffetmasternp.service;
 
 import by.tms.buffetmasternp.dto.BoxItemDto;
+import by.tms.buffetmasternp.entity.BoxItem;
 import by.tms.buffetmasternp.entity.Product;
 import by.tms.buffetmasternp.enums.Status;
 import by.tms.buffetmasternp.repository.ProductRepository;
@@ -67,15 +68,11 @@ public class ProductService {
         productRepository.save(newProduct);
     }
 
-    public List<BoxItemDto> getAllBoxItemsDto(List<BoxItemDto> list) {
-        List<Long> boxIds = new ArrayList<>();
-        for (BoxItemDto boxItemDto : list) {
-            boxIds.add(boxItemDto.getProductId());
+    public List<BoxItemDto> getAllBoxItemsDto(List<Long> list) {
+        if (list.isEmpty()) {
+            list.add(0L);
         }
-        if (boxIds.isEmpty()) {
-            boxIds.add(0L);
-        }
-        List<Product> products = productRepository.findAllByStatusAndIdNotIn(Status.OPEN, boxIds);
+        List<Product> products = productRepository.findAllByStatusAndIdNotIn(Status.OPEN, list);
         List<BoxItemDto> boxItemDtos = new ArrayList<>();
         for (Product product : products) {
             BoxItemDto boxItemDto = new BoxItemDto();
@@ -87,6 +84,23 @@ public class ProductService {
             boxItemDto.setImageUrl(product.getImage());
             boxItemDtos.add(boxItemDto);
         }
+        return boxItemDtos;
+    }
+
+    public List<BoxItemDto> getAllBoxItemsDtoIn(List<BoxItem> boxItems) {
+        List<BoxItemDto> boxItemDtos = new ArrayList<>();
+        for (BoxItem boxItem : boxItems) {
+            Product product = productRepository.findByStatusAndId(Status.OPEN, boxItem.getProduct().getId());
+            BoxItemDto boxItemDto = new BoxItemDto();
+            boxItemDto.setProductId(product.getId());
+            boxItemDto.setProductName(product.getName());
+            boxItemDto.setProductDescription(product.getDescription());
+            boxItemDto.setMin(product.getMin());
+            boxItemDto.setPrice(product.getPrice());
+            boxItemDto.setImageUrl(product.getImage());
+            boxItemDto.setQuantity(boxItem.getQuantity());
+            boxItemDtos.add(boxItemDto);
+            }
         return boxItemDtos;
     }
 

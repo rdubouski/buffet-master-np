@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +27,58 @@ public class BoxService {
     private final BoxRepository boxRepository;
     private final BoxItemRepository boxItemRepository;
     private final ProductRepository productRepository;
+    private final ProductService productService;
 
     public BoxService(BoxRepository boxRepository, BoxItemRepository boxItemRepository,
-                      ProductRepository productRepository) {
+                      ProductRepository productRepository, ProductService productService) {
         this.boxRepository = boxRepository;
         this.boxItemRepository = boxItemRepository;
         this.productRepository = productRepository;
+        this.productService = productService;
+    }
+
+    public List<BoxDto> getAllBoxesByStatusAndType(Status status, Type type) {
+        List<Box> boxes = boxRepository.findAllByStatusAndType(status, type);
+        List<BoxDto> boxDtos = new ArrayList<>();
+        for (Box box : boxes) {
+            List<BoxItem> boxItems = boxItemRepository.findAllByBoxId(box.getId());
+            List<BoxItemDto> boxItemDtos = productService.getAllBoxItemsDtoIn(boxItems);
+            BoxDto boxDto = new BoxDto();
+            boxDto.setId(box.getId());
+            boxDto.setName(box.getName());
+            boxDto.setStatus(box.getStatus());
+            boxDto.setType(box.getType());
+            boxDto.setDescription(box.getDescription());
+            boxDto.setGroupBox(box.getGroupBox());
+            boxDto.setImage(box.getImage());
+            boxDto.setBoxItemDtos(boxItemDtos);
+            boxDto.setPrice(getPriceBox(boxItemDtos));
+            boxDtos.add(boxDto);
+        }
+        return boxDtos;
+    }
+
+    public Box getBoxById(Long id) {
+        Optional<Box> box = boxRepository.findById(id);
+        if (box.isPresent()) {
+            return box.get();
+        } else {
+            throw new EntityNotFoundException("Бокс с id " + id + " не найден");
+        }
+    }
+
+    public void editBox(Box box) {
+        Box newBox = new Box();
+        Box oldBox = getBoxById(box.getId());
+        newBox.setId(box.getId());
+        newBox.setName(box.getName());
+        newBox.setDescription(box.getDescription());
+        newBox.setImage(box.getImage());
+        newBox.setAccount(oldBox.getAccount());
+        newBox.setStatus(oldBox.getStatus());
+        newBox.setType(oldBox.getType());
+        newBox.setGroupBox(oldBox.getGroupBox());
+        boxRepository.save(newBox);
     }
 
     public BoxDto getBoxDtoById(Long id) {
@@ -46,7 +93,13 @@ public class BoxService {
         return boxDto;
     }
 
-
+    public double getPriceBox(List<BoxItemDto> boxItemDtoList) {
+        double price = 0;
+        for (BoxItemDto boxItemDto : boxItemDtoList) {
+            price += boxItemDto.getPrice() * boxItemDto.getQuantity();
+        }
+        return price;
+    }
 
     @Transactional
     public void addBox(BoxDto boxDto, Authentication authentication) {
@@ -61,6 +114,17 @@ public class BoxService {
         }
     }
 
+    public void closeBox(Long id) {
+        Optional<Box> optionalBox = boxRepository.findById(id);
+        if (optionalBox.isPresent()) {
+            Box box = optionalBox.get();
+            box.setStatus(Status.CLOSED);
+            boxRepository.save(box);
+        } else {
+            throw new EntityNotFoundException("Бокс с id " + id + " не найден");
+        }
+    }
+
     public List<BoxItemDto> getBoxItemDtoByBox(List<BoxItemDto> boxItemDtos, Long productId, int quantity) {
         Optional<Product> productOptional = productRepository.findById(productId);
         if (productOptional.isPresent()) {
@@ -69,6 +133,7 @@ public class BoxService {
             boxItemDto.setProductId(product.getId());
             boxItemDto.setProductName(product.getName());
             boxItemDto.setImageUrl(product.getImage());
+            boxItemDto.setPrice(product.getPrice());
             boxItemDto.setQuantity(quantity);
             boxItemDtos.add(boxItemDto);
         } else {

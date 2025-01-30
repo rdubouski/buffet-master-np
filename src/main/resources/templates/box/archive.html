@@ -12,20 +12,15 @@
         <div class="col">
             <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
-                    <a href="/box/admin/add">
-                        <button style="width: 100%">Добавить бокс</button>
-                    </a>
 
                     <table class="table" style="width: 100%">
                         <thead class="thead-light">
                         <tr>
                             <th style="width: 30%">Название</th>
                             <th style="width: 30%">Описание</th>
-                            <th style="width: 10%">Изображение</th>
-                            <th style="width: 5%">Группа</th>
-                            <th style="width: 5%">Цена</th>
-                            <th style="width: 10%">Редактировать</th>
-                            <th style="width: 10%">В архив</th>
+                            <th style="width: 15%">Изображение</th>
+                            <th style="width: 15%">Группа</th>
+                            <th style="width: 10%">Цена</th>
                         </tr>
                         </thead>
 
@@ -42,18 +37,11 @@
                                 </td>
                                 <td><input style="width: 100%; Border: none; outline: none;" type="text" th:value="${boxDto.groupBox.name}" name="groupBox" readonly></td>
                                 <td><input style="width: 100%; Border: none; outline: none;" type="text" th:value="${boxDto.price}" name="price" readonly></td>
-                                <td>
-                                    <a th:href="@{/box/admin/edit/{id}(id=${boxDto.id})}" class="btn btn-primary">Редактировать</a>
-                                </td>
-                                <td><input type="submit" class="btn btn-primary" value="В архив"></td>
                             </tr>
                         </form>
 
                         </tbody>
                     </table>
-                    <a href="/box/admin/archive">
-                        <button style="width: 100%">Архив боксов</button>
-                    </a>
                 </div>
             </div>
         </div>

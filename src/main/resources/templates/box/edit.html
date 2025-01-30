@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить бокс</title>
+    <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}"></header>
+<div class="container" style="margin-top: 70px; margin-bottom: 50px">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-9">
+            <div class="card" style="border-radius: 15px;">
+                <div class="card-body p-5">
+                    <form th:action="@{/box/admin/edit}" th:object="${box}" method="post">
+                        <input type="hidden" th:value="${box.id}" th:field="*{id}">
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="name">Название</label>
+                            <input type="text" th:field="*{name}" th:value="${box.name}" id="name" class="form-control form-control-lg">
+                        </div>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="description">Описание</label>
+                            <textarea rows="5" th:field="*{description}" th:value="${box.description}" id="description" class="form-control form-control-lg"></textarea>
+                        </div>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="image">Ссылка на изображение</label>
+                            <input type="text" th:field="*{image}" th:value="${box.image}" id="image" class="form-control form-control-lg">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button  type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+<th:block th:insert="~{blocks/bootstrap :: bootstrapscript}"></th:block>
+</html>

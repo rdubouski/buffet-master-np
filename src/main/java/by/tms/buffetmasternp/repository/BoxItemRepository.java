@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BoxItemRepository extends JpaRepository<BoxItem, Integer> {
-    List<BoxItem> findByBoxId(Long boxId);
+    List<BoxItem> findAllByBoxId(Long boxId);
 }

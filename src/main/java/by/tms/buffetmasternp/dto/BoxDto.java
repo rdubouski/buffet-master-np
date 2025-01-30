@@ -21,4 +21,5 @@ public class BoxDto {
     private Type type;
     private List<BoxItemDto> boxItemDtos;
     private GroupBox groupBox;
+    private Double price;
 }
