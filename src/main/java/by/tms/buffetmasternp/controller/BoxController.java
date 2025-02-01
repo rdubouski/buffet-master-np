@@ -53,6 +53,17 @@ public class BoxController {
 
     @GetMapping("/admin/add")
     public String addBox(Model model, HttpSession session) {
+        customBox(model, session);
+        return "box/add";
+    }
+
+    @GetMapping("/user/add")
+    public String addBoxUser(Model model, HttpSession session) {
+        customBox(model, session);
+        return "box/user/add";
+    }
+
+    private void customBox(Model model, HttpSession session) {
         BoxDto boxDto = new BoxDto();
         List<GroupBox> groupBoxes = groupBoxService.getAllGroups();
         List<BoxItemDto> boxItemDtoList;
@@ -71,7 +82,6 @@ public class BoxController {
         model.addAttribute("groupsBox", groupBoxes);
         model.addAttribute("productsAll", boxItemDtos);
         session.setAttribute("boxItemDtoList", boxItemDtoList);
-        return "box/add";
     }
 
     @PostMapping("/admin/add")
@@ -80,6 +90,17 @@ public class BoxController {
         boxService.addBox(boxDto, authentication);
         session.setAttribute("boxItemDtoList", null);
         return "redirect:/box/admin/all";
+    }
+
+    @PostMapping("/user/add")
+    public String addBoxUser(@ModelAttribute("boxDto") BoxDto boxDto, HttpSession session, Authentication authentication) {
+        boxDto.setBoxItemDtos((List<BoxItemDto>) session.getAttribute("boxItemDtoList"));
+        BoxDto boxDtoCart = boxService.addBoxUser(boxDto, authentication);
+        session.setAttribute("boxItemDtoList", null);
+        List<BoxDto> boxDtos = (List<BoxDto>) session.getAttribute("cart");
+        boxDtos.add(boxDtoCart);
+        session.setAttribute("cart", boxDtos);
+        return "redirect:/box/user/all";
     }
 
     @PostMapping("/admin/product-add")
@@ -91,10 +112,25 @@ public class BoxController {
         return "redirect:/box/admin/add";
     }
 
+    @PostMapping("/user/product-add")
+    public String addProductBoxUser(HttpSession session,
+                                @RequestParam("productId") Long id,
+                                @RequestParam("quantity") int quantity) {
+
+        session.setAttribute("boxItemDtoList", boxService.getBoxItemDtoByBox((List<BoxItemDto>) session.getAttribute("boxItemDtoList"), id, quantity));
+        return "redirect:/box/user/add";
+    }
+
     @PostMapping("/admin/product-drop")
     public String deleteProductBox(@RequestParam("boxItemDtoId") Long id, HttpSession session) {
         session.setAttribute("boxItemDtoList", boxService.deleteBoxItemDtoByBox((List<BoxItemDto>) session.getAttribute("boxItemDtoList"), id));
         return "redirect:/box/admin/add";
+    }
+
+    @PostMapping("/user/product-drop")
+    public String deleteProductBoxUser(@RequestParam("boxItemDtoId") Long id, HttpSession session) {
+        session.setAttribute("boxItemDtoList", boxService.deleteBoxItemDtoByBox((List<BoxItemDto>) session.getAttribute("boxItemDtoList"), id));
+        return "redirect:/box/user/add";
     }
 
     @GetMapping("/admin/edit/{id}")

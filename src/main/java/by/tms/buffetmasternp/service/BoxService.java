@@ -11,6 +11,7 @@ import by.tms.buffetmasternp.enums.Status;
 import by.tms.buffetmasternp.enums.Type;
 import by.tms.buffetmasternp.repository.BoxItemRepository;
 import by.tms.buffetmasternp.repository.BoxRepository;
+import by.tms.buffetmasternp.repository.GroupBoxRepository;
 import by.tms.buffetmasternp.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -28,13 +29,15 @@ public class BoxService {
     private final BoxItemRepository boxItemRepository;
     private final ProductRepository productRepository;
     private final ProductService productService;
+    private final GroupBoxRepository groupBoxRepository;
 
     public BoxService(BoxRepository boxRepository, BoxItemRepository boxItemRepository,
-                      ProductRepository productRepository, ProductService productService) {
+                      ProductRepository productRepository, ProductService productService, GroupBoxRepository groupBoxRepository) {
         this.boxRepository = boxRepository;
         this.boxItemRepository = boxItemRepository;
         this.productRepository = productRepository;
         this.productService = productService;
+        this.groupBoxRepository = groupBoxRepository;
     }
 
     public List<BoxDto> getAllBoxesByStatusAndType(Status status, Type type) {
@@ -132,6 +135,29 @@ public class BoxService {
             boxItem.setQuantity(item.getQuantity());
             boxItemRepository.save(boxItem);
         }
+    }
+
+    @Transactional
+    public BoxDto addBoxUser(BoxDto boxDto, Authentication authentication) {
+        boxDto.setGroupBox(groupBoxRepository.findById(9L).get());
+        boxDto.setImage("");
+        String description = "";
+        Box box = getBox(boxDto, authentication);
+        boxRepository.save(box);
+        for (BoxItemDto item: boxDto.getBoxItemDtos()) {
+            BoxItem boxItem = new BoxItem();
+            boxItem.setBox(box);
+            boxItem.setProduct(productRepository.findById(item.getProductId()).get());
+            boxItem.setQuantity(item.getQuantity());
+            description = description.concat(item.getProductName())
+                                .concat(" - ")
+                                .concat(String.valueOf(item.getQuantity()))
+                                .concat("\n");
+            boxItemRepository.save(boxItem);
+        }
+        boxDto.setDescription(description);
+        boxDto.setId(box.getId());
+        return boxDto;
     }
 
     public void closeBox(Long id) {
