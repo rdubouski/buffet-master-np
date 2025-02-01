@@ -3,6 +3,7 @@ package by.tms.buffetmasternp.controller;
 import by.tms.buffetmasternp.dto.AccountLoginDto;
 import by.tms.buffetmasternp.dto.AccountRegDto;
 import by.tms.buffetmasternp.service.AccountService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/account")
@@ -43,7 +46,8 @@ public class AccountController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, HttpSession session) {
+        session.setAttribute("cart", new ArrayList<>());
         model.addAttribute("loginDto", new AccountLoginDto());
         return "account/login";
     }

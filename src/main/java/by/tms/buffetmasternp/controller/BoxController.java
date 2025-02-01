@@ -109,4 +109,42 @@ public class BoxController {
         boxService.editBox(box);
         return "redirect:/box/admin/all";
     }
+
+    @GetMapping("/user/all")
+    public String allBoxCatalog(Model model) {
+        List<BoxDto> boxDtos = boxService.getAllBoxesByStatusAndType(Status.OPEN, Type.DEFAULT);
+        model.addAttribute("boxDtos", boxDtos);
+        return "box/user/all";
+    }
+
+    @GetMapping("/user/{id}")
+    public String userBox(@PathVariable("id") Long id, Model model) {
+        BoxDto boxDto = boxService.getBoxDtoById(id);
+        model.addAttribute("boxDto", boxDto);
+        return "box/user/box";
+    }
+
+    @PostMapping("/cart/add")
+    public String addCart(@RequestParam("id") Long id, HttpSession session) {
+        BoxDto boxDto = boxService.getBoxDtoById(id);
+        List<BoxDto> boxDtos = (List<BoxDto>) session.getAttribute("cart");
+        boxDtos.add(boxDto);
+        session.setAttribute("cart", boxDtos);
+        return "redirect:/box/user/all";
+    }
+
+    @GetMapping("/cart")
+    public String cart(Model model, HttpSession session) {
+        List<BoxDto> boxDtos = (List<BoxDto>) session.getAttribute("cart");
+        model.addAttribute("priceCart", boxService.getPriceCart(boxDtos));
+        return "box/user/cart";
+    }
+
+    @PostMapping("/cart/drop")
+    public String dropCart(@RequestParam("id") Long id, HttpSession session) {
+        List<BoxDto> boxDtos = (List<BoxDto>) session.getAttribute("cart");
+        boxDtos.removeIf(boxDto -> boxDto.getId().equals(id));
+        session.setAttribute("cart", boxDtos);
+        return "redirect:/box/cart";
+    }
 }

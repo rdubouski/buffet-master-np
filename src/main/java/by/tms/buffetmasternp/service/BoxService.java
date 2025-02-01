@@ -82,15 +82,35 @@ public class BoxService {
     }
 
     public BoxDto getBoxDtoById(Long id) {
-        Box box = boxRepository.findById(id).orElse(null);
-        BoxDto boxDto = new BoxDto();
-        boxDto.setGroupBox(box.getGroupBox());
-        boxDto.setImage(box.getImage());
-        boxDto.setName(box.getName());
-        boxDto.setDescription(box.getDescription());
-        boxDto.setStatus(box.getStatus());
-        boxDto.setType(box.getType());
+        Box box;
+        BoxDto boxDto;
+        Optional<Box> optionalBox = boxRepository.findById(id);
+        if (optionalBox.isPresent()) {
+            box = optionalBox.get();
+            List<BoxItem> boxItems = boxItemRepository.findAllByBoxId(box.getId());
+            List<BoxItemDto> boxItemDtos = productService.getAllBoxItemsDtoIn(boxItems);
+            boxDto = new BoxDto();
+            boxDto.setId(box.getId());
+            boxDto.setName(box.getName());
+            boxDto.setStatus(box.getStatus());
+            boxDto.setType(box.getType());
+            boxDto.setDescription(box.getDescription());
+            boxDto.setGroupBox(box.getGroupBox());
+            boxDto.setImage(box.getImage());
+            boxDto.setBoxItemDtos(boxItemDtos);
+            boxDto.setPrice(getPriceBox(boxItemDtos));
+        } else {
+            throw new EntityNotFoundException("Бокс с id " + id + " не найден");
+        }
         return boxDto;
+    }
+
+    public double getPriceCart(List<BoxDto> boxDtos) {
+        double price = 0;
+        for (BoxDto boxDto : boxDtos) {
+            price += boxDto.getPrice();
+        }
+        return price;
     }
 
     public double getPriceBox(List<BoxItemDto> boxItemDtoList) {

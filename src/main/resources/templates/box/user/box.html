@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Боксы</title>
+    <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}"></header>
+<div class="container" style="margin-top: 70px; margin-bottom: 50px">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="row alert alert-danger" role="alert" sec:authorize="!isAuthenticated()">
+            <h4 style="text-align: center">Для добавления бокса в корзину пройдите регистрацию</h4>
+        </div>
+        <table class="table" style="width: 100%">
+            <thead class="thead-light">
+            <tr>
+                <th style="width: 50%"></th>
+                <th style="width: 50%"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <form th:action="@{/box/cart/add}" method="post">
+                    <tr>
+                        <input type="hidden" th:value="${boxDto.id}" name="id">
+                        <td style="text-align: center;">
+                            <img style="width:100%;"
+                                 th:src="${boxDto.image.length() > 0} ? (${boxDto.image})
+                                                            : 'https://www.sales-soluciones.es/server/Portal_0010494/img/products/no_image_xxl.jpg'">
+                        </td>
+                        <td>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${boxDto.name}"></h5>
+                                    <br>
+                                    <p class="card-text">Описание</p>
+                                    <textarea rows="5" style="width: 100%; Border: none; outline: none;" th:text="${boxDto.description}" readonly></textarea>
+                                    <br>
+                                    <p class="card-text">Состав</p>
+                                    <div th:each="item : ${boxDto.boxItemDtos}">
+                                        <p class="card-text" th:text="${item.productName} + ' ' + ${item.quantity} + ' шт.'"></p>
+                                    </div>
+                                    <br>
+                                    <p class="card-text" th:text="'Цена: ' + ${boxDto.price}"></p>
+                                    <input sec:authorize="isAuthenticated()" type="submit" class="btn btn-primary" value="В корзину">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+<th:block th:insert="~{blocks/bootstrap :: bootstrapscript}"></th:block>
+</html>
