@@ -7,14 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order")
-public class Order {
+@Table(name = "order_box")
+public class OrderBox {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +39,7 @@ public class Order {
     @Column(name = "comment")
     private String comment;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusOrder status;
 }

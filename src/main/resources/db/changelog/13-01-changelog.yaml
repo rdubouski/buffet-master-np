@@ -9,5 +9,5 @@ databaseChangeLog:
               - column:
                   name: comment
                   type: VARCHAR(255)
-            tableName: order
+            tableName: order_box
 

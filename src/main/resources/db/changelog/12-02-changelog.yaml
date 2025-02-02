@@ -8,6 +8,6 @@ databaseChangeLog:
             columns:
               - column:
                   name: status
-                  type: SMALLINT
-            tableName: order
+                  type: VARCHAR(255)
+            tableName: order_box
 

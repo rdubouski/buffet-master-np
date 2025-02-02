@@ -42,6 +42,14 @@ public class BoxService {
 
     public List<BoxDto> getAllBoxesByStatusAndType(Status status, Type type) {
         List<Box> boxes = boxRepository.findAllByStatusAndType(status, type);
+        return getBoxDtos(boxes);
+    }
+
+    public List<BoxDto> convertBoxesToBoxDtos(List<Box> boxes) {
+        return getBoxDtos(boxes);
+    }
+
+    private List<BoxDto> getBoxDtos(List<Box> boxes) {
         List<BoxDto> boxDtos = new ArrayList<>();
         for (Box box : boxes) {
             List<BoxItem> boxItems = boxItemRepository.findAllByBoxId(box.getId());
@@ -152,9 +160,11 @@ public class BoxService {
             description = description.concat(item.getProductName())
                                 .concat(" - ")
                                 .concat(String.valueOf(item.getQuantity()))
-                                .concat("\n");
+                                .concat(" шт.\n");
             boxItemRepository.save(boxItem);
         }
+        box.setDescription(description);
+        boxRepository.save(box);
         boxDto.setDescription(description);
         boxDto.setId(box.getId());
         return boxDto;

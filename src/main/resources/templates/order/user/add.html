@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить заказ</title>
+    <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}"></header>
+<div class="container" style="margin-top: 70px; margin-bottom: 50px">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+            <div class="card" style="border-radius: 15px;">
+                <div class="card-body p-5">
+                    <form th:action="@{/order/user/add}" th:object="${orderDto}" method="post">
+                    <table class="table" style="width: 100%">
+                        <thead class="thead-light">
+                        <tr>
+                            <th style="width: 30%">Название</th>
+                            <th style="width: 30%">Описание</th>
+                            <th style="width: 30%">Изображение</th>
+                            <th style="width: 10%">Цена</th>
+                        </tr>
+                        </thead>
+
+                        <tbody th:each="boxDto : ${session.cart}">
+                            <tr>
+                                <th scope="row"><input style="width: 100%; Border: none; outline: none;" type="text" th:value="${boxDto.name}" name="name" readonly></th>
+                                <td><textarea rows="5" style="width: 100%; Border: none; outline: none;" th:text="${boxDto.description}" name="description" readonly></textarea></td>
+                                <td style="text-align: center;">
+                                    <img class="rounded-circle" style="width:80px; height:80px"
+                                         th:src="${boxDto.image.length() > 0} ? (${boxDto.image})
+                                                            : 'https://www.sales-soluciones.es/server/Portal_0010494/img/products/no_image_xxl.jpg'">
+                                </td>
+                                <td><input style="width: 100%; Border: none; outline: none;" type="text" th:value="${boxDto.price}" readonly></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        <label class="form-label" for="phone">Телефон</label>
+                        <input style="width: 100%;" type="text" th:value="${orderDto.phone}" name="phone" id="phone">
+                        <label class="form-label" for="address">Адрес</label>
+                        <input style="width: 100%;" type="text" th:value="${orderDto.address}" name="address" id="address">
+                        <label class="form-label" for="comment">Комментарий</label>
+                        <input style="width: 100%;" type="text" th:value="${orderDto.comment}" name="comment" id="comment">
+                        <label class="form-label" for="datepicker">Выбрать дату</label>
+                        <input name="date" id="datepicker" width="276">
+
+                        <script th:inline="javascript">
+                            var minOrder, datepicker, maxOrder, disDate;
+                            disDate = [(${closeDates})];
+                            minOrder = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+1);
+                            maxOrder = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+30);
+                            datepicker = $('#datepicker').datepicker({
+                                minDate: minOrder,
+                                maxDate: maxOrder,
+                                weekStartDay: 1,
+                                disableDates: disDate
+                            });
+                        </script>
+
+                        <label class="form-label" for="price">Цена итого:</label>
+                        <input style="width: 100%; Border: none; outline: none;" type="text" th:value="${orderDto.price}" name="price" id="price" readonly>
+                        <div class="d-flex justify-content-center">
+                            <button  type="submit" class="btn btn-primary">Подтвердить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+<th:block th:insert="~{blocks/bootstrap :: bootstrapscript}"></th:block>
+</html>

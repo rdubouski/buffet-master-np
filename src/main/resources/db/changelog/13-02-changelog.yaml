@@ -25,7 +25,7 @@ databaseChangeLog:
       changes:
         - dropColumn:
             columnName: date
-            tableName: order
+            tableName: order_box
   - changeSet:
       id: 1736801287067-4
       author: dubouskir
@@ -36,5 +36,5 @@ databaseChangeLog:
               - column:
                   name: date
                   type: DATE
-            tableName: order
+            tableName: order_box
 

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Боксы</title>
+    <title>Бокс</title>
     <th:block th:insert="~{blocks/bootstrap :: bootstraplink}"></th:block>
 </head>
 <body>
@@ -42,7 +42,7 @@
                                     </div>
                                     <br>
                                     <p class="card-text" th:text="'Цена: ' + ${boxDto.price}"></p>
-                                    <input sec:authorize="isAuthenticated()" type="submit" class="btn btn-primary" value="В корзину">
+                                    <input sec:authorize="hasRole('USER')" type="submit" class="btn btn-primary" value="В корзину">
                                 </div>
                             </div>
                         </td>

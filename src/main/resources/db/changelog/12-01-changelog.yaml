@@ -170,7 +170,7 @@ databaseChangeLog:
               - column:
                   name: price
                   type: DOUBLE
-            tableName: order
+            tableName: order_box
   - changeSet:
       id: 1736690125400-8
       author: dubouskir
@@ -353,7 +353,7 @@ databaseChangeLog:
             baseTableName: order_item
             constraintName: FK_ORDER_ITEM_ON_ID_ORDER
             referencedColumnNames: id
-            referencedTableName: order
+            referencedTableName: order_box
   - changeSet:
       id: 1736690125400-19
       author: dubouskir
@@ -361,7 +361,7 @@ databaseChangeLog:
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: id_account
-            baseTableName: order
+            baseTableName: order_box
             constraintName: FK_ORDER_ON_ID_ACCOUNT
             referencedColumnNames: id
             referencedTableName: account
